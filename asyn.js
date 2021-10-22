@@ -42,5 +42,8 @@ const asyncWay=loginUser('josi@gmail.com','josi',(user)=>{
     console.log(user);
     getUserVideo(user.userEmail,vidoes=>{
         console.log(vidoes);
+    });
+    getUserdetail(user.userEmail,(detail)=>{
+        console.log(detail)
     })
 })
