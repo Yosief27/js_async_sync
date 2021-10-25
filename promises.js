@@ -27,7 +27,7 @@ promisef.then((user)=>{
 })
 */
 console.log('start');
-function loginuser(email,age){
+function loginUser(email,age){
     return new Promise((resolve,reject)=>{
         if(email==='josi@gmail.com') {
                setTimeout(()=>{
@@ -46,29 +46,54 @@ function loginuser(email,age){
     )
 }
 
-function getUservideo(email){
+function getUserVideo(email){
     return new Promise((resolve,reject)=>{
             setTimeout(()=>{
-        if(email==='josi@gmail.com'){
+        if(email==='josi@gail.com'){
 
         resolve(['video1','video2','video3'])
+        }else{
+            reject(new Error('Please check the user email!'));
         }
     })
 
     })
 }
-function getuserdetail(user1){
+function getUserDetail(video){
     return new Promise((resolve,reject)=>{
      setTimeout(()=>{
-      if(user1==='video1'){
+      if(video==='video1'){
 
       resolve({title:'the pilgrams way',pagen:200});
-      }  
+      }  else{
+          reject(new Error('No video matching!'))
+      }
     })
 
        
     })
 }
+/*
 loginuser('josi@gmail.com',24).then(user=>
     getUservideo(user.useremail)).then((videos)=>getuserdetail(videos[0])       
    ).then(detail=>console.log(detail))
+
+ */
+//working with async and await
+async function displayUser(){
+    try{
+            const user=await loginUser('josi@gmail.com',23);
+    const videos=await getUserVideo(user.useremail);
+    const detail=await getUserDetail(videos[0]);
+    
+    console.log(detail) ;
+    console.log(videos);
+    
+    console.log(user);
+
+    }catch(err){
+        console.log(err.message);
+    }
+}
+displayUser();
+//async function return promises so we need to use the .then operation to access the data that it is returned from.
